@@ -13,6 +13,8 @@ class CustomBottomNavBar extends StatelessWidget {
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
         return BottomNavigationBar(
+          backgroundColor: AppColors.white,
+          elevation: 1,
           onTap: (value) {
             context.read<HomeCubit>().changeTab(newTabIndex: value);
           },
