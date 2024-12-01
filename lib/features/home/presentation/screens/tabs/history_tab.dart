@@ -18,54 +18,58 @@ class HistoryTab extends StatelessWidget {
             ? CustomErrorWidget(
                 onTapReloadPage: () => context.read<HomeCubit>().loadJsonData(),
               )
-            : state is LoadJsonDataSuccessState
-                ? Padding(
+            : state is LoadJsonDataLoadingState
+                ? const Center(child: CircularProgressIndicator.adaptive())
+                : Padding(
                     padding: EdgeInsets.all(15.w),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Expanded(
-                              child: OrderInsightContainer(
-                                  title: 'Total orders',
-                                  number: context.read<HomeCubit>().getTotalOrders().toString()),
-                            ),
-                            10.horizontalSpace,
-                            Expanded(
-                              child: OrderInsightContainer(
-                                  title: 'Average price',
-                                  number: context.read<HomeCubit>().getAvgPrice().toString()),
-                            ),
-                            10.horizontalSpace,
-                            Expanded(
-                              child: OrderInsightContainer(
-                                  title: 'Number of returns',
-                                  number: context.read<HomeCubit>().getNumOfReturns().toString()),
-                            ),
-                            10.horizontalSpace,
-                          ],
-                        ),
-                        10.verticalSpace,
-                        Expanded(
-                          child: ListView.separated(
-                            itemBuilder: (context, index) {
-                              return Order(
-                                buyer: state.orders[index].buyer,
-                                company: state.orders[index].company,
-                                isActive: state.orders[index].isActive,
-                                picture: state.orders[index].picture,
-                                price: state.orders[index].price,
-                                status: state.orders[index].status,
-                              );
-                            },
-                            separatorBuilder: (context, index) => 10.verticalSpace,
-                            itemCount: state.orders.length,
+                    child: SingleChildScrollView(
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                child: OrderInsightContainer(
+                                    title: 'Total orders',
+                                    number: context.read<HomeCubit>().getTotalOrders().toString()),
+                              ),
+                              10.horizontalSpace,
+                              Expanded(
+                                child: OrderInsightContainer(
+                                    title: 'Average price',
+                                    number: context.read<HomeCubit>().getAvgPrice().toString()),
+                              ),
+                              10.horizontalSpace,
+                              Expanded(
+                                child: OrderInsightContainer(
+                                    title: 'Number of returns',
+                                    number: context.read<HomeCubit>().getNumOfReturns().toString()),
+                              ),
+                              10.horizontalSpace,
+                            ],
                           ),
-                        ),
-                      ],
+                          10.verticalSpace,
+                          AspectRatio(
+                            aspectRatio: 0.5.w,
+                            child: ListView.separated(
+                              itemCount: context.read<HomeCubit>().orders.length,
+                              itemBuilder: (context, index) {
+                                return Order(
+                                  buyer: context.read<HomeCubit>().orders[index].buyer,
+                                  company: context.read<HomeCubit>().orders[index].company,
+                                  isActive: context.read<HomeCubit>().orders[index].isActive,
+                                  picture: context.read<HomeCubit>().orders[index].picture,
+                                  price: context.read<HomeCubit>().orders[index].price,
+                                  status: context.read<HomeCubit>().orders[index].status,
+                                );
+                              },
+                              separatorBuilder: (context, index) => 10.verticalSpace,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  )
-                : const Center(child: CircularProgressIndicator.adaptive());
+                  );
       },
     );
   }
