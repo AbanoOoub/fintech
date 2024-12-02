@@ -1,59 +1,81 @@
+import 'package:fintech/core/app_constants/size_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/utils/app_colors.dart';
 
 class AppTextTheme {
-  static TextStyle get headingLarge => TextStyle(
+  static TextStyle headingLarge(BuildContext context) => TextStyle(
         fontWeight: FontWeight.w600,
-        fontSize: 22.sp,
+        fontSize: getResponsiveFontSize(context, fontSize: 22),
         color: AppColors.textColor,
       );
 
-  static TextStyle get headingMedium => TextStyle(
+  static TextStyle headingMedium(BuildContext context) => TextStyle(
         fontWeight: FontWeight.w600,
-        fontSize: 18.sp,
+        fontSize: getResponsiveFontSize(context, fontSize: 18),
         color: AppColors.textColor,
       );
 
-  static TextStyle get headingSmall => TextStyle(
+  static TextStyle headingSmall(BuildContext context) => TextStyle(
         fontWeight: FontWeight.w600,
-        fontSize: 16.sp,
+        fontSize: getResponsiveFontSize(context, fontSize: 16),
         color: AppColors.textColor,
       );
 
-  static TextStyle get subHeadingLarge => TextStyle(
+  static TextStyle subHeadingLarge(BuildContext context) => TextStyle(
         fontWeight: FontWeight.w600,
-        fontSize: 14.sp,
+        fontSize: getResponsiveFontSize(context, fontSize: 14),
         color: AppColors.textColor,
       );
 
-  static TextStyle get subHeadingMedium => TextStyle(
+  static TextStyle subHeadingMedium(BuildContext context) => TextStyle(
         fontWeight: FontWeight.w600,
-        fontSize: 12.sp,
+        fontSize: getResponsiveFontSize(context, fontSize: 12),
         color: AppColors.textColor,
       );
 
-  static TextStyle get subHeadingSmall => TextStyle(
+  static TextStyle subHeadingSmall(BuildContext context) => TextStyle(
         fontWeight: FontWeight.w400,
-        fontSize: 16.sp,
+        fontSize: getResponsiveFontSize(context, fontSize: 16),
         color: AppColors.textColor,
       );
 
-  static TextStyle get bodyLarge => TextStyle(
+  static TextStyle bodyLarge(BuildContext context) => TextStyle(
         fontWeight: FontWeight.w400,
-        fontSize: 14.sp,
+        fontSize: getResponsiveFontSize(context, fontSize: 14),
         color: AppColors.textColor,
       );
 
-  static TextStyle get bodyMedium => TextStyle(
+  static TextStyle bodyMedium(BuildContext context) => TextStyle(
         fontWeight: FontWeight.w400,
-        fontSize: 12.sp,
+        fontSize: getResponsiveFontSize(context, fontSize: 12),
         color: AppColors.textColor,
       );
 
-  static TextStyle get bodySmall => TextStyle(
+  static TextStyle bodySmall(BuildContext context) => TextStyle(
         fontWeight: FontWeight.w400,
-        fontSize: 10.sp,
+        fontSize: getResponsiveFontSize(context, fontSize: 10),
         color: AppColors.textColor,
       );
+}
+
+double getResponsiveFontSize(context, {required double fontSize}) {
+  double scaleFactor = getScaleFactor(context);
+  double responsiveFontSize = fontSize * scaleFactor;
+
+  // this ratios I declared
+  double lowerLimit = fontSize * 0.8;
+  double upperLimit = fontSize * 1.2;
+
+  return responsiveFontSize.clamp(lowerLimit, upperLimit);
+}
+
+double getScaleFactor(context) {
+  double width = MediaQuery.sizeOf(context).width;
+  if (width < SizeManager.tablet) {
+    return width / 550;
+  } else if (width < SizeManager.desktop) {
+    return width / 1000;
+  } else {
+    return width / 1920;
+  }
 }

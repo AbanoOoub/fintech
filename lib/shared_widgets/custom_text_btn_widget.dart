@@ -33,7 +33,7 @@ class CustomTextButtonWidget extends StatelessWidget {
         child: CustomTextWidget(
           text: text,
           textAlign: textAlign ?? TextAlign.center,
-          textStyle: textStyle ?? AppTextTheme.bodyMedium,
+          textStyle: textStyle ?? AppTextTheme.bodyMedium(context),
         ),
       ),
     );

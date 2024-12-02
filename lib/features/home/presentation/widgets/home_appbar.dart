@@ -18,7 +18,7 @@ class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
           backgroundColor: AppColors.white,
           title: CustomTextWidget(
             text: context.read<HomeCubit>().tabsTitle[context.read<HomeCubit>().tabIndex],
-            textStyle: AppTextTheme.headingLarge,
+            textStyle: AppTextTheme.headingLarge(context),
             textColor: AppColors.mainColor,
           ),
         );

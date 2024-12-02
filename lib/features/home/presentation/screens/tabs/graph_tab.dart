@@ -14,7 +14,7 @@ class GraphTab extends StatelessWidget {
       builder: (context, state) {
         return Center(
           child: AspectRatio(
-            aspectRatio: 1.w,
+            aspectRatio: 0.5.w,
             child: LineChart(
               LineChartData(
                 lineBarsData: [

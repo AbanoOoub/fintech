@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:fintech/core/app_constants/size_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -14,7 +17,6 @@ class OrderInsightContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100.w,
       padding: EdgeInsets.all(15.w),
       decoration: BoxDecoration(
         color: AppColors.white,
@@ -28,13 +30,12 @@ class OrderInsightContainer extends StatelessWidget {
         ],
       ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Expanded(
-            child: CustomTextWidget(
-              text: title,
-              textStyle: AppTextTheme.subHeadingLarge,
-              textAlign: TextAlign.center,
-            ),
+          CustomTextWidget(
+            text: title,
+            textStyle: AppTextTheme.subHeadingLarge(context),
+            textAlign: TextAlign.center,
           ),
           CustomTextWidget(text: number),
         ],

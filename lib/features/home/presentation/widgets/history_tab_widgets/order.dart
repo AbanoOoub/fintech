@@ -59,7 +59,7 @@ class Order extends StatelessWidget {
                   children: [
                     CustomTextWidget(
                       text: buyer,
-                      textStyle: AppTextTheme.headingSmall,
+                      textStyle: AppTextTheme.headingSmall(context),
                     ),
                     5.verticalSpace,
                     CustomTextWidget(text: company),
@@ -114,12 +114,12 @@ class Order extends StatelessWidget {
             children: [
               CustomTextWidget(
                 text: 'Total:',
-                textStyle: AppTextTheme.headingMedium,
+                textStyle: AppTextTheme.headingMedium(context),
               ),
               5.horizontalSpace,
               CustomTextWidget(
                 text: price,
-                textStyle: AppTextTheme.headingMedium,
+                textStyle: AppTextTheme.headingMedium(context),
               ),
             ],
           ),

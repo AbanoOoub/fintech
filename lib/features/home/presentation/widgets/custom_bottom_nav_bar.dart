@@ -21,8 +21,9 @@ class CustomBottomNavBar extends StatelessWidget {
           currentIndex: context.read<HomeCubit>().tabIndex,
           selectedItemColor: AppColors.mainColor,
           unselectedItemColor: AppColors.hintColor,
-          selectedLabelStyle: AppTextTheme.bodyMedium.copyWith(color: AppColors.mainColor),
-          unselectedLabelStyle: AppTextTheme.bodySmall.copyWith(color: AppColors.hintColor),
+          selectedLabelStyle: AppTextTheme.bodyMedium(context).copyWith(color: AppColors.mainColor),
+          unselectedLabelStyle:
+              AppTextTheme.bodySmall(context).copyWith(color: AppColors.hintColor),
           unselectedIconTheme: IconThemeData(size: 20.w),
           selectedIconTheme: IconThemeData(size: 24.w),
           items: const [

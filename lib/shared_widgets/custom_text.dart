@@ -29,7 +29,7 @@ class CustomTextWidget extends StatelessWidget {
       overflow: TextOverflow.ellipsis,
       style: textStyle != null
           ? textStyle!.copyWith(color: textColor, fontWeight: textWeight, fontSize: fontSize)
-          : AppTextTheme.bodyMedium
+          : AppTextTheme.bodyMedium(context)
               .copyWith(color: textColor, fontWeight: textWeight, fontSize: fontSize),
     );
   }

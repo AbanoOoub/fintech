@@ -25,12 +25,12 @@ class CustomErrorWidget extends StatelessWidget {
             size: 60.w,
           ),
           20.verticalSpace,
-          CustomTextWidget(text: 'Oh uh', textStyle: AppTextTheme.headingLarge),
+          CustomTextWidget(text: 'Oh uh', textStyle: AppTextTheme.headingLarge(context)),
           10.verticalSpace,
           CustomTextWidget(
             text: error ?? 'Something went wrong!',
             textAlign: TextAlign.center,
-            textStyle: AppTextTheme.bodyLarge,
+            textStyle: AppTextTheme.bodyLarge(context),
           ),
           30.verticalSpace,
           CustomTextButtonWidget(
@@ -40,7 +40,7 @@ class CustomErrorWidget extends StatelessWidget {
             style: const ButtonStyle(
               backgroundColor: WidgetStatePropertyAll(AppColors.mainColor),
             ),
-            textStyle: AppTextTheme.bodyMedium.copyWith(color: AppColors.white),
+            textStyle: AppTextTheme.bodyMedium(context).copyWith(color: AppColors.white),
             onPressed: onTapReloadPage,
           ),
         ],
